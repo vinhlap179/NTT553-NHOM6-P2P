@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilePizza Clone - Nhóm 6</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+    <h1>Khung dự án P2P đã chạy!</h1>
+    <p>Trạng thái kết nối Socket.io: <span id="status" style="color: red; font-weight: bold;">Đang kết nối...</span></p>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        
+        socket.on('connect', () => {
+            const statusEl = document.getElementById('status');
+            statusEl.innerText = 'Đã kết nối thành công! (ID: ' + socket.id + ')';
+            statusEl.style.color = 'green';
+        });
+
+        socket.on('disconnect', () => {
+            const statusEl = document.getElementById('status');
+            statusEl.innerText = 'Mất kết nối!';
+            statusEl.style.color = 'red';
+        });
+    </script>
+</body>
+</html>
