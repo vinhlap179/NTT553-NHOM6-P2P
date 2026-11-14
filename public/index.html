@@ -2,28 +2,31 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FilePizza Clone - Nhóm 6</title>
+    <title>Test WebRTC P2P</title>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 20px;">
-    <h1>Khung dự án P2P đã chạy!</h1>
-    <p>Trạng thái kết nối Socket.io: <span id="status" style="color: red; font-weight: bold;">Đang kết nối...</span></p>
+<body style="font-family: Arial; padding: 20px;">
+    <h2>Test WebRTC Giai đoạn 1</h2>
+    
+    <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+        <h3>Người gửi (Sender)</h3>
+        <button id="btnCreateRoom">1. Tạo Phòng</button>
+        <p>Mã phòng của bạn: <strong id="myRoomId" style="color: blue; font-size: 20px;"></strong></p>
+    </div>
+
+    <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+        <h3>Người nhận (Receiver)</h3>
+        <input type="text" id="inputRoomId" placeholder="Nhập mã phòng...">
+        <button id="btnJoinRoom">2. Vào Phòng</button>
+    </div>
+
+    <div style="padding: 10px; border: 1px solid #ccc; background: #f9f9f9;">
+        <h3>Kết nối P2P (DataChannel)</h3>
+        <button id="btnSendMsg" disabled>3. Gửi "Hello World"</button>
+        <p>Trạng thái: <span id="status">Chưa kết nối</span></p>
+        <p>Tin nhắn nhận được: <strong id="msgReceived" style="color: green;"></strong></p>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-        
-        socket.on('connect', () => {
-            const statusEl = document.getElementById('status');
-            statusEl.innerText = 'Đã kết nối thành công! (ID: ' + socket.id + ')';
-            statusEl.style.color = 'green';
-        });
-
-        socket.on('disconnect', () => {
-            const statusEl = document.getElementById('status');
-            statusEl.innerText = 'Mất kết nối!';
-            statusEl.style.color = 'red';
-        });
-    </script>
+    <script src="client.js"></script>
 </body>
 </html>
